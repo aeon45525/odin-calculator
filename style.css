@@ -1,0 +1,51 @@
+body {
+  margin: 100px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgba(27, 27, 27, 0.877);
+}
+
+.display {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgb(109, 105, 105);
+}
+
+.keys {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
+.key {
+  font: inherit;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.operator {
+  background-color: rgba(233, 163, 32, 0.952);
+}
+
+.equal {
+  background-color: rgba(52, 173, 52, 0.76);
+}
+
+.clear {
+  background-color: rgba(180, 28, 28, 0.945);
+}
