@@ -4,7 +4,6 @@ body {
   margin: 100px;
   font-size: large;
   font-weight: bold;
-  /* width: fit-content; */
 }
 
 .calculator {
@@ -27,12 +26,13 @@ body {
 
 .keys {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 5px;
 }
 
-.row {
+.column {
   display: flex;
+  flex-direction: column;
   gap: 5px;
 }
 
@@ -50,6 +50,10 @@ body {
 
 .equal {
   background-color: #4cd964;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .clear {
