@@ -2,22 +2,25 @@
 const display = document.querySelector(".display");
 const keys = document.querySelectorAll(".key");
 
-numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-operators = ["*", "/", "-", "+"];
+let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let operators = ["*", "/", "-", "+"];
 keys.forEach((key) => {
   key.addEventListener("click", () => {
     const value = key.textContent;
 
     if (numbers.includes(value)) {
       display.textContent += value;
-    } else if (value === ".") {
-      if (display.textContent[display.textContent.length - 1] !== ".")
+    }
+    // decimal
+    else if (value === ".") {
+      if (display.textContent === "") display.textContent = "0.";
+      else if (checkDecimal(display.textContent)) display.textContent += value;
+    }
+    // operators
+    else if (operators.includes(value)) {
+      if (checkOperator(display.textContent)) {
         display.textContent += value;
-    } else if (operators.includes(value)) {
-      if (
-        !operators.includes(display.textContent[display.textContent.length - 1])
-      )
-        display.textContent += value;
+      }
     } else if (value === "=") {
       // operator goes here
     } else if (value === "C") {
@@ -25,3 +28,18 @@ keys.forEach((key) => {
     }
   });
 });
+
+function checkDecimal(display) {
+  let numbers = display.split(/[\+\-\*\/]/);
+  let number = numbers[numbers.length - 1];
+
+  return !number.includes(".");
+}
+
+function checkOperator(display) {
+  let operator = display[display.length - 1];
+
+  if (display === "") return false;
+  else if (operators.includes(operator)) return false;
+  else return true;
+}

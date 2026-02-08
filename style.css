@@ -24,6 +24,13 @@ body {
   border-radius: 5px;
   border: 2px solid black;
   background-color: #e6e6e6;
+
+  /* temp fix container overflow */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 28px;
+  overflow: hidden;
 }
 
 .keys {
