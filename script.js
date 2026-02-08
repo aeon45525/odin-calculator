@@ -18,7 +18,7 @@ keys.forEach((key) => {
     }
     // operators
     else if (operators.includes(value)) {
-      if (checkOperator(display.textContent)) {
+      if (checkOperator(display.textContent, value)) {
         display.textContent += value;
       }
     } else if (value === "=") {
@@ -36,10 +36,16 @@ function checkDecimal(display) {
   return !number.includes(".");
 }
 
-function checkOperator(display) {
-  let operator = display[display.length - 1];
+function checkOperator(display, key) {
+  let lastChar = display[display.length - 1];
 
-  if (display === "") return false;
-  else if (operators.includes(operator)) return false;
-  else return true;
+  if (key === "-") {
+    if (display === "") return true;
+    else if (operators.includes(lastChar) && lastChar !== "-") return true;
+    else if (numbers.includes(lastChar) || lastChar === ".") return true;
+    else return false;
+  } else {
+    if (display === "" || operators.includes(lastChar)) return false;
+    else return true;
+  }
 }
