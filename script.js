@@ -18,8 +18,8 @@ keys.forEach((key) => {
         operators.includes(display.textContent[display.textContent.length - 1])
       )
         display.textContent += "0.";
-    //   else if (checkDecimal(display.textContent)) display.textContent += value;
-    // }
+      else if (checkDecimal(display.textContent)) display.textContent += value;
+    }
     // operators
     else if (operators.includes(value)) {
       if (checkOperator(display.textContent, value)) {
@@ -46,7 +46,7 @@ function checkOperator(display, key) {
   if (key === "-") {
     if (display === "") return true;
     else if (operators.includes(lastChar) && lastChar !== "-") return true;
-    else if (numbers.includes(lastChar) || lastChar === ".") return true;
+    else if (numbers.includes(lastChar) && lastChar !== ".") return true;
     else return false;
   } else {
     if (display === "" || operators.includes(lastChar)) return false;
