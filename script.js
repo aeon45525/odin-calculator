@@ -14,8 +14,12 @@ keys.forEach((key) => {
     // decimal
     else if (value === ".") {
       if (display.textContent === "") display.textContent = "0.";
-      else if (checkDecimal(display.textContent)) display.textContent += value;
-    }
+      else if (
+        operators.includes(display.textContent[display.textContent.length - 1])
+      )
+        display.textContent += "0.";
+    //   else if (checkDecimal(display.textContent)) display.textContent += value;
+    // }
     // operators
     else if (operators.includes(value)) {
       if (checkOperator(display.textContent, value)) {
