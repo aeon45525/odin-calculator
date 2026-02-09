@@ -27,11 +27,40 @@ keys.forEach((key) => {
       }
     } else if (value === "=") {
       // operator goes here
+      calculate(display.textContent);
     } else if (value === "C") {
       display.textContent = "";
     }
   });
 });
+
+function calculate(display) {
+  let character = "";
+  let tempNumber = "";
+  let number = [];
+  let operator = [];
+
+  for (let i = 0; i < display.length; i++) {
+    character = display[i];
+
+    if (operators.includes(character) && character !== "-") {
+      number.push(tempNumber);
+      operator.push(character);
+      tempNumber = "";
+    } else if (character === "-") {
+      if (i === 0 || operators.includes(display[i - 1]))
+        tempNumber += character;
+      else if (display[i - 1] === "." || numbers.includes(display[i - 1])) {
+        number.push(tempNumber);
+        operator.push(character);
+        tempNumber = "";
+      }
+    } else if (numbers.includes(character) || character === ".")
+      tempNumber += character;
+  }
+
+  if (tempNumber !== "") number.push(tempNumber);
+}
 
 function checkDecimal(display) {
   let numbers = display.split(/[\+\-\*\/]/);
@@ -46,7 +75,7 @@ function checkOperator(display, key) {
   if (key === "-") {
     if (display === "") return true;
     else if (operators.includes(lastChar) && lastChar !== "-") return true;
-    else if (numbers.includes(lastChar) && lastChar !== ".") return true;
+    else if (numbers.includes(lastChar) || lastChar === ".") return true;
     else return false;
   } else {
     if (display === "" || operators.includes(lastChar)) return false;
