@@ -27,14 +27,13 @@ keys.forEach((key) => {
       }
     } else if (value === "=") {
       // operator goes here
-      calculate(display.textContent);
     } else if (value === "C") {
       display.textContent = "";
     }
   });
 });
 
-function calculate(display) {
+function toInt(display) {
   let character = "";
   let tempNumber = "";
   let number = [];
@@ -60,6 +59,13 @@ function calculate(display) {
   }
 
   if (tempNumber !== "") number.push(tempNumber);
+
+  NumFloat = number.map((n) => parseFloat(n));
+
+  return {
+    number: NumFloat,
+    operator: operator,
+  };
 }
 
 function checkDecimal(display) {
